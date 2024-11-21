@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchMeals } from "../http";
+import { fetchMeals } from "../api/api";
+import MealItem from "./MealItem";
 
 const Meals = () => {
   const [loadedMeals, setLoadedMeals] = useState([]);
@@ -27,11 +28,7 @@ const Meals = () => {
       ) : (
         <ul id="meals">
           {loadedMeals.map((meal) => (
-            <li key={meal.id}>
-              <img src={meal.image} alt={meal.name} />
-              <h2>{meal.name}</h2>
-              <p>{meal.description}</p>
-            </li>
+            <MealItem key={meal.id} meal={meal} />
           ))}
         </ul>
       )}
