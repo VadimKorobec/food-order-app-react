@@ -4,7 +4,7 @@ import { createContext } from "react";
 const CartContext = createContext({
   items: [],
   addItem: (item) => {},
-  removeItem: (id) => {},
+  removeItem: (item) => {},
 });
 
 const cartReducer = (state, action) => {
@@ -32,17 +32,17 @@ const cartReducer = (state, action) => {
     }
     case "REMOVE_ITEM": {
       const existingCartItem = state.items.find(
-        (item) => item.id === action.item.id
+        (item) => item.id === action.id
       );
 
       let newItems = [];
 
       if (existingCartItem.quantity === 1) {
-        newItems = state.items.filter((item) => item.id !== action.item.id);
+        newItems = state.items.filter((item) => item.id !== action.id);
         return { ...state, items: newItems };
       } else {
         newItems = state.items.map((item) =>
-          item.id === action.item.id
+          item.id === action.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         );

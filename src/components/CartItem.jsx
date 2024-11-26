@@ -10,7 +10,6 @@ const CartItem = ({ item }) => {
   };
 
   const handleMinusItem = (id) => {
-    console.log(id);
     cartCtx.removeItem(id);
   };
 
@@ -19,7 +18,7 @@ const CartItem = ({ item }) => {
       <p>
         {item.name} - {item.quantity} x {currencyFormater.format(item.price)}
       </p>
-      <p className="cart-item-action">
+      <p className="cart-item-actions">
         <button onClick={() => handleMinusItem(item.id)}>-</button>
         <span>{item.quantity}</span>
         <button onClick={handlePlusItem}>+</button>
