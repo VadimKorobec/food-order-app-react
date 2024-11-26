@@ -18,9 +18,13 @@ const Checkout = () => {
     userProgressCtx.hideCheckout();
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <Modal open={userProgressCtx.progress === "checkout"}>
-      <form>
+    <Modal open={userProgressCtx.progress === "checkout"} onClose={handleClose}>
+      <form onSubmit={handleSubmit}>
         <h2>Checkout</h2>
         <p>Total Amount:{currencyFormater.format(totalAmount)}</p>
         <Input label="Full Name" type="text" id="full-name" />
