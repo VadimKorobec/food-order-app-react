@@ -15,12 +15,16 @@ const sendHttpRequest = async (url, config) => {
 };
 
 export const useHttp = () => {
+  const [isLoading,setIsLoading] = useState(false)
   const [error, setError] = useState();
+
   const sendRequest = async () => {
+    setIsLoading(true)
     try {
       const resData = sendHttpRequest();
     } catch (error) {
       setError(error.message || "something went wrong");
     }
+    setIsLoading(false)
   };
 };
