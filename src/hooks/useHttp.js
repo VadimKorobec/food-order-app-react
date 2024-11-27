@@ -1,9 +1,26 @@
+import { useState } from "react";
+
 const sendHttpRequest = async (url, config) => {
   const response = await fetch(url, config);
 
+  const resData = await response.json();
+
   if (!response.ok) {
-    throw new Error("");
+    throw new Error(
+      resData.message || "Something went wrong, failed to send request."
+    );
   }
+
+  return resData;
 };
 
-export const useHttp = () => {};
+export const useHttp = () => {
+  const [error, setError] = useState();
+  const sendRequest = async () => {
+    try {
+      const resData = sendHttpRequest();
+    } catch (error) {
+      setError(error.message || "something went wrong");
+    }
+  };
+};
