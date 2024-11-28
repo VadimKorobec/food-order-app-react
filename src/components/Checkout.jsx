@@ -5,12 +5,12 @@ import { currencyFormater } from "../util/formatting";
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import UserProgressContext from "../store/UserProgressContext";
-import { API_URL } from "../api/api";
+
 
 const Checkout = () => {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
-  console.log(cartCtx.items);
+  
 
   const totalAmount = cartCtx.items.reduce((acc, item) => {
     return acc + item.quantity * item.price;
@@ -27,7 +27,7 @@ const Checkout = () => {
     const customerData = Object.fromEntries(fd.entries());
     console.log(customerData);
 
-    fetch(`${API_URL}/orders`, {
+    fetch('http://localhost:3000/orders', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
